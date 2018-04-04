@@ -7,7 +7,7 @@
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.183352, 0 )
 
-[node name="InputProcessor" type="Node" parent="." index="2"]
+[node name="InputProcessor" type="Node" parent="." index="3"]
 
 script = ExtResource( 2 )
 

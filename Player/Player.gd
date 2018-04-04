@@ -23,6 +23,8 @@ func _physics_process(delta):
 	var dir = Vector3()
 
 	var is_moving = false
+	var is_hitting = false
+
 	if(Input.is_key_pressed(KEY_W)):
 		dir += -camera.basis[2]
 		is_moving = true
@@ -35,6 +37,9 @@ func _physics_process(delta):
 	if(Input.is_key_pressed(KEY_D)):
 		dir += camera.basis[0]
 		is_moving = true
+
+	if(Input.is_key_pressed(KEY_SPACE)):
+		is_hitting = true
 
 	dir.y = 0
 	dir = dir.normalized()
@@ -66,6 +71,9 @@ func _physics_process(delta):
 
 		char_rot.y = angle
 		self.set_rotation(char_rot)
+
+	if is_hitting:
+		get_node("AnimationPlayer").play("hit")
 
 #	var speed = hv.length() / SPEED
 
