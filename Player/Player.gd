@@ -1,18 +1,23 @@
 extends KinematicBody
 
+onready var anim = get_node("AnimationPlayer")
+
 var movement = Vector3()
 var speed = 0.1
-
 
 const SPEED = 6
 const ACCELERATION = 3
 const DE_ACCELERATION = 5
+
 var velocity = Vector3()
 #var dir = Vector3()
 #var is_moving = false
 var gravity = -9.8
 var camera
 var skip_echo = false
+
+# states
+var is_attacking = false
 
 func _ready():
 	camera = get_node("/root/Game/Camera").get_global_transform()
@@ -72,8 +77,11 @@ func _physics_process(delta):
 		char_rot.y = angle
 		self.set_rotation(char_rot)
 
-	if is_hitting:
-		get_node("AnimationPlayer").play("hit")
+	if is_hitting and not is_attacking:
+		# is_attacking = true
+		anim.play("hit")
+		yield (anim, "animation_finished")
+		is_attacking = false
 
 #	var speed = hv.length() / SPEED
 
@@ -120,3 +128,7 @@ func _input2(event):
 			KEY_T:
 				if event.is_pressed():
 					skip_echo = !skip_echo
+
+# animation player func calls
+func attack_started():
+	is_attacking = true
