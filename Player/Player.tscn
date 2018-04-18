@@ -13,3 +13,6 @@ _sections_unfolded = [ "Playback Options" ]
 [node name="InputProcessor" type="Node" parent="." index="3"]
 script = ExtResource( 2 )
 
+[node name="Sword" parent="." index="6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55273, 0.666918 )
+
